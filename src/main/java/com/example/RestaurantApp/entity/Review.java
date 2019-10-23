@@ -1,5 +1,7 @@
-package com.example.RestaurantApp.restaurantUser;
+package com.example.RestaurantApp.entity;
 
+import com.example.RestaurantApp.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -7,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "reviews")
-public class Review {
+public class Review extends BaseEntity {
 
     @Column(name = "text")
     private String text;
@@ -15,10 +17,32 @@ public class Review {
     @Column(name = "date")
     @DateTimeFormat(pattern = "dd-nn-yyyy")
     private Date dateOfPosting;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @Column(name = "hiddden")
+    private boolean hidden;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
+    @JsonIgnore
     private RestaurantUser user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_user_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Restaurant restaurant;
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     public String getText() {
         return text;
@@ -49,7 +73,7 @@ public class Review {
         return "Review{" +
                 "text='" + text + '\'' +
                 ", dateOfPosting=" + dateOfPosting +
-                ", user=" + user +
+                //", user=" + user +
                 '}';
     }
 }

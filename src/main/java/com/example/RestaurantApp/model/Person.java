@@ -1,12 +1,12 @@
 package com.example.RestaurantApp.model;
 
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotEmpty;
-import javax.persistence.Column;
 
 @MappedSuperclass
-public class Person extends BaseEntity {
+public class Person extends ContactEntity {
     @Column(name = "first_name")
     @NotEmpty
     private String firstName;
@@ -17,6 +17,8 @@ public class Person extends BaseEntity {
 
     @Column(name = "mail")
     private String mail;
+    @Column(name = "uer_type")
+    private TypeOfUser user_type;
 
     public String getMail() {
         return mail;
@@ -26,16 +28,13 @@ public class Person extends BaseEntity {
         this.mail = mail;
     }
 
-    public UserType getUser_type() {
+    public TypeOfUser getUser_type() {
         return user_type;
     }
 
-    public void setUser_type(UserType user_type) {
+    public void setUser_type(TypeOfUser user_type) {
         this.user_type = user_type;
     }
-
-    @Column(name = "uer_type")
-    private UserType user_type;
 
     public String getFirstName() {
         return this.firstName;
@@ -54,4 +53,13 @@ public class Person extends BaseEntity {
     }
 
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", mail='" + mail + '\'' +
+                ", user_type=" + user_type +
+                '}';
+    }
 }

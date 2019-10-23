@@ -4,10 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class NamedEntity extends BaseEntity {
+public class NamedEntity extends ContactEntity {
     @Column(name = "name")
     private String name;
-
 
 
     public String getName() {
@@ -18,7 +17,7 @@ public class NamedEntity extends BaseEntity {
         this.name = name;
     }
 
-    @Override
+
     public String toString() {
         return this.getName();
     }

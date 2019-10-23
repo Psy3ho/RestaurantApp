@@ -1,6 +1,6 @@
 package com.example.RestaurantApp.model;
 
-public enum UserType {
+public enum TypeOfUser {
     ADMIN,
     REGISTERED,
     GUEST
