@@ -15,18 +15,11 @@ public class Person extends ContactEntity {
     @NotEmpty
     private String lastName;
 
-    @Column(name = "mail")
-    private String mail;
+
     @Column(name = "uer_type")
     private TypeOfUser user_type;
 
-    public String getMail() {
-        return mail;
-    }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 
     public TypeOfUser getUser_type() {
         return user_type;
@@ -58,7 +51,7 @@ public class Person extends ContactEntity {
         return "Person{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", mail='" + mail + '\'' +
+                ", mail='" + super.getMail() + '\'' +
                 ", user_type=" + user_type +
                 '}';
     }

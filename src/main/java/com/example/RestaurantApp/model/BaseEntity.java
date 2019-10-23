@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public class BaseEntity {
+    //generating id's , very helpful for future addons
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
